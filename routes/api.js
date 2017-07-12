@@ -55,7 +55,8 @@ router.post("/customer/items/:itemId/:moneyGiven", (req, res) => {
     _id: purchasedItemId
   }).then(purchasedItem => {
     if (purchasedItem.cost < customerMoney) {
-      console.log(purchasedItem);
+      purchasedItem.purchased = true;
+      purchasedItem.save()
       res.send({
         "Congrats, You Purchased a": purchasedItem.name,
         status: "success",
