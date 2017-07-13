@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var vendingSchema = new Schema({
-  money: Number,
   name: String,
   cost: Number,
   quantity: Number,
