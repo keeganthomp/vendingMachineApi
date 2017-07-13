@@ -9,8 +9,8 @@ router.get("/items", (req, res) => {
 });
 
 router.get("/purchases", (req, res) => {
-  Item.find().then(allItems => {
-    res.send({ status: "success", allItems });
+  Item.find({purchased: true}).then(purchasedItems => {
+    res.send({ status: "success", purchasedItems });
   });
 });
 
