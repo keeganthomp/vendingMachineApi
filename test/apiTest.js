@@ -49,7 +49,7 @@ describe("Update a vending machine record", function() {
       .post("/api/items") // returns a promise
       .send({ name: "dogs", cost: 5, quantity: 14 })
       .expect(function(res) {
-          console.log("RES BODYY", res.body.savedItem);
+        console.log("RES BODYY", res.body.savedItem);
         newRecord = res.body.savedItem;
       })
       .end(done);
@@ -78,6 +78,20 @@ describe("Update a vending machine record", function() {
       request(vendingApp)
         .post(`/api/customer/items/${newRecord._id}/205`)
         .send() // returns a promise
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .expect(function(res) {
+          assert.equal(res.body["status"], "success");
+        })
+        .end(done);
+    });
+  });
+
+  describe("PUT /api/items/:itemId", function() {
+    it("should update item data successfully", function(done) {
+      request(vendingApp)
+        .put("/api/items/${newRecord._id}")
+        .send({ name: "cats", quantity: 32, cost: 10 }) // returns a promise
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .expect(function(res) {

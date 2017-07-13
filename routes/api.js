@@ -31,7 +31,7 @@ router.post("/items", (req, res) => {
 
 router.put("/items/:itemId", (req, res) => {
   Item.updateOne({ _id: req.params.id }, req.body).then(updatedItem => {
-    res.send(updatedItem);
+    res.send({status: "success", updatedItem});
   });
 });
 
