@@ -7,7 +7,8 @@ var vendingSchema = new Schema({
   cost: Number,
   quantity: Number,
   purchased: {
-    type: Boolean
+    type: Boolean,
+    default: false
   }
 });
 
